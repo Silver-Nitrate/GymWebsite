@@ -20,11 +20,19 @@
             align-items: center;
             justify-content: space-between;
             padding: 15px;
+            flex-wrap: wrap;
         }
-        .left {
+        .logo-container {
             display: flex;
             align-items: center;
+            flex-direction: column;
         }
+        .logo-text {
+            font-size: 24px;
+            margin-top: 1px;
+            margin-bottom: 0;
+        }
+
         .left img {
             width: 120px;
             height: 125px;
@@ -35,6 +43,8 @@
         }
         .mid {
             flex-grow: 1;
+            font-size: x-large;
+            text-align: center;
         }
         .navbar {
             list-style-type: none;
@@ -56,12 +66,13 @@
         }
         .right {
             display: flex;
+            justify-content: flex-end;
         }
         .container {
             border: 5px solid white;
-            margin: 100px auto;
-            padding: 50px;
-            width: 60%;
+            margin: 50px auto;
+            padding: 20px;
+            width: 80%;
             max-width: 800px;
             border-radius: 20px;
         }
@@ -69,7 +80,8 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        .form-group input {
+
+        .form-group input, .form-group select {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -77,6 +89,9 @@
             border: 2px solid black;
             border-radius: 8px;
             box-sizing: border-box;
+        }
+        .form-submit {
+            text-align: center;
         }
         .btn {
             background-color: black;
@@ -86,21 +101,42 @@
             border-radius: 10px;
             font-size: 18px;
             cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            margin-right: 10px;
+            display: inline-block;;
         }
         .btn:hover {
             background-color: rgb(31, 30, 30);
+            animation: alternate-reverse;
+        }
+
+        @media screen and (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+            .right {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            .container {
+                margin: 20px auto;
+            }
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <div class="left">
-            <img src="img/Logo.jpg" alt="HULK FITNESS Logo">
-            <div>HULK FITNESS</div>
+        <div class="logo-container">
+            <div class="left">
+                <img src="img/Logo.png" alt="HULK FITNESS Logo">
+            </div>
+            <div class="logo-text">HULK FITNESS</div>
         </div>
         <div class="mid">
             <ul class="navbar">
-                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Home</a></li>
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">Fitness Calculator</a></li>
                 <li><a href="#">Contact Us</a></li>
@@ -108,32 +144,95 @@
         </div>
         <div class="right">
             <button class="btn">Make a Call</button>
-            <button class="btn">Mail Us</button>
+            <button class="btn" style="margin-right: 10px;">Mail Us</button>
         </div>
+        
     </header>
+    
     <div class="container">
         <h1>JOIN LUCKNOW'S BEST GYM NOW</h1>
-        <form action="noaction.php">
-            <div class="form-group">
-                <input type="text" name="name" placeholder="Enter your Name">
+        <form action="noaction.php" onsubmit="showMessage(); return false;">
+
+
+            <div class="form-group" style="display: flex;">
+                <div style="flex: 1; margin-right: 10px;">
+                    <input type="text" name="first_name" placeholder="First Name">
+                </div>
+                <div style="flex: 1;">
+                    <input type="text" name="last_name" placeholder="Last Name">
+                </div>
             </div>
-            <div class="form-group">
-                <input type="text" name="age" placeholder="Enter your Age">
+
+            <div class="form-group" style="display: flex; gap: 10px;">
+                <div style="flex: 1;">
+                    <input type="date" id="dob" name="dob" onchange="calculateAge()" placeholder="Date of Birth">
+                </div>
+                <div style="flex: 1;">
+                    <input type="text" id="age" name="age" placeholder="Age" readonly disabled style="color: white;">
+                </div>
             </div>
+            
+
             <div class="form-group">
-                <input type="text" name="gender" placeholder="Enter your Gender">
+                <select name="gender" id="genderSelect">
+                    <option value="" disabled selected hidden>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="transgender">Transgender</option>
+                    <option value="prefer_not_to_say">Prefer not to say</option>
+                </select>
             </div>
+
             <div class="form-group">
                 <input type="text" name="locality" placeholder="Enter your Locality">
             </div>
+
             <div class="form-group">
                 <input type="email" name="email" placeholder="Enter your Email Id">
             </div>
+
             <div class="form-group">
                 <input type="tel" name="phone" placeholder="Enter your Phone Number">
             </div>
-            <button type="submit" class="btn">Submit</button>
+
+            <div class="form-submit">
+                <button type="submit" class="btn">Submit</button>
+            </div>
+            
         </form>
     </div>
+
+    <script>
+        const genderSelect = document.getElementById("genderSelect");
+        genderSelect.addEventListener("change", function() {
+            const selectedOption = this.options[this.selectedIndex];
+            if (selectedOption.value !== "") {
+                selectedOption.disabled = true;
+            }
+            // Enable previously selected options
+            for (const option of this.options) {
+                if (option !== selectedOption) {
+                    option.disabled = false;
+                }
+            }
+        });
+
+        function calculateAge() {
+            var dobInput = document.getElementById("dob").value;
+            var dob = new Date(dobInput);
+            var today = new Date();
+            var age = today.getFullYear() - dob.getFullYear();
+            var monthDiff = today.getMonth() - dob.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            document.getElementById("age").value = age;
+        }
+
+        function showMessage() {
+        var firstName = document.getElementsByName('first_name')[0].value;
+        alert("Thank you " + firstName + ", for your submission!");
+        }
+    </script>
 </body>
 </html>
