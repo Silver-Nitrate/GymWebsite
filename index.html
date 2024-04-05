@@ -1,138 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HULK FITNESS</title>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset */
+        body {
+            font-family: 'Baloo Bhai', cursive;
+            color: white;
+            margin: 0;
+            padding: 0;
+            background: url('img/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+        }
+        .left {
+            display: flex;
+            align-items: center;
+        }
+        .left img {
+            width: 120px;
+            height: 125px;
+        }
+        .left div {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        .mid {
+            flex-grow: 1;
+        }
+        .navbar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .navbar li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .navbar li a {
+            color: white;
+            text-decoration: none;
+        }
+        .navbar li a:hover,
+        .navbar li a.active {
+            text-decoration: underline;
+        }
+        .right {
+            display: flex;
+        }
+        .container {
+            border: 5px solid white;
+            margin: 100px auto;
+            padding: 50px;
+            width: 60%;
+            max-width: 800px;
+            border-radius: 20px;
+        }
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 2px solid black;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        .btn {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid aqua;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: rgb(31, 30, 30);
+        }
+    </style>
 </head>
-<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<style>
-    /* CSS Reset */
-    body {
-        font-family: 'Baloo Bhai', cursive;
-        color: white;
-        margin: 0px;
-        padding: 0px;
-        background-color: black;
-        background: url('img/background1.jpg');
-    }
-
-    .left {
-        display: inline-block;
-        /* border: 2px solid red; */
-        position: absolute;
-        left: 45px;
-        top: 15px;
-    }
-
-    .left img {
-        width: 120px;
-        height: 125px;;
-        filter: invert(0%);
-    }
-
-    .left div {
-        line-height: 0px;
-        font-size: 20px;
-        text-align: center;
-    }
-
-    .mid {
-        display: block;
-        width: 36%;
-        margin: 29px auto;
-        /* border: 2px solid green; */
-    }
-
-    .right {
-        position: absolute;
-        right: 34px;
-        top: 43px;
-        display: inline-block;
-        /* border: 2px solid yellow; */
-    }
-
-    .navbar {
-        display: inline-block;
-    }
-
-    .navbar li {
-        display: inline-block;
-        font-size: 25px;
-    }
-
-    .navbar li a {
-        color: white;
-        text-decoration: none;
-        padding: 34px 23px;
-
-    }
-
-    .navbar li a:hover,
-    .navbar li a.active {
-        text-decoration: underline;
-        color: red ;
-
-    }
-
-    .btn {
-        font-family: 'Baloo Bhai', cursive;
-        margin: 0px 9px;
-        background-color: black;
-        color: white;
-        padding: 4px 14px;
-        border: 2px solid aqua;
-        border-radius: 10px;
-        font-size: 20px;
-        cursor: pointer;
-    }
-
-    .btn:hover {
-        background-color: rgb(31, 30, 30);
-    }
-
-    .container {
-        border: 5px solid white;
-        margin: 106px 80px;
-        padding: 75px;
-        width: 33%;
-        border-radius: 33px;
-    }
-
-    .form-group input {
-        font-family: 'Baloo Bhai', cursive;
-        text-align: center;
-        display: block;
-        width: 508px;
-        padding: 1px;
-        border: 2px solid black;
-        margin: 11px auto;
-        font-size: 25px;
-        border-radius: 8px;
-    }
-
-    .container h1 {
-        text-align: center;
-    }
-
-    .container button {
-        display: block;
-        width: 66%;
-        margin: 20px auto;
-    }
-</style>
-
 <body>
     <header class="header">
-        <!-- Left box for logo -->
         <div class="left">
-            <img src="img/Logo.jpg" alt="">
+            <img src="img/Logo.jpg" alt="HULK FITNESS Logo">
             <div>HULK FITNESS</div>
         </div>
-        <!-- Mid box for navbar -->
         <div class="mid">
             <ul class="navbar">
                 <li><a href="#" class="active">Home</a></li>
@@ -141,8 +106,6 @@
                 <li><a href="#">Contact Us</a></li>
             </ul>
         </div>
-
-        <!-- Right box for buttons -->
         <div class="right">
             <button class="btn">Make a Call</button>
             <button class="btn">Mail Us</button>
@@ -152,26 +115,25 @@
         <h1>JOIN LUCKNOW'S BEST GYM NOW</h1>
         <form action="noaction.php">
             <div class="form-group">
-                <input type="text" name="" placeholder="Enter your Name">
+                <input type="text" name="name" placeholder="Enter your Name">
             </div>
             <div class="form-group">
-                <input type="text" name="" placeholder="Enter your Age">
+                <input type="text" name="age" placeholder="Enter your Age">
             </div>
             <div class="form-group">
-                <input type="text" name="" placeholder="Enter your Gender">
+                <input type="text" name="gender" placeholder="Enter your Gender">
             </div>
             <div class="form-group">
-                <input type="text" name="" placeholder="Enter your Locality">
+                <input type="text" name="locality" placeholder="Enter your Locality">
             </div>
             <div class="form-group">
-                <input type="text" name="" placeholder="Enter your Email Id">
+                <input type="email" name="email" placeholder="Enter your Email Id">
             </div>
             <div class="form-group">
-                <input type="text" name="" placeholder="Enter your Phone Number">
+                <input type="tel" name="phone" placeholder="Enter your Phone Number">
             </div>
-            <button class="btn">Submit</button>
+            <button type="submit" class="btn">Submit</button>
         </form>
     </div>
 </body>
-
 </html>
